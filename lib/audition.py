@@ -1,15 +1,16 @@
 class Audition:
+    #all contains all instances of auditions
     all = []
     def __init__(self, role, actor, location, phone):
-      self.role = role
+      self.role = role 
       self.actor = actor
-      self.location = location
-      self.phone = phone
-      self.hired = False
-      type(self).all.append(self)
+      self.location = location #not validated 
+      self.phone = phone #not validated 
+      self.hired = False #defaults to false
+      type(self).all.append(self) #adds new audition instance to all
       
       
-      
+#input validation standard for actor     
     @property
     def actor(self):
         return self._actor
@@ -20,11 +21,7 @@ class Audition:
         else:
             raise Exception("Sorry, must be str and btwn 3-20 char")
     
-    
-    def call_back(self):
-        self.hired = True
-        return
-    
+ #input validation with internal import to avoid circular dependancy for role (Role instance)   
     @property
     def role(self):
         return self._role
@@ -35,3 +32,8 @@ class Audition:
             self._role = role
         else:
             raise Exception('not role')
+
+#change hired to true will affect Role methods     
+    def call_back(self):
+        self.hired = True
+        return
